@@ -40,11 +40,15 @@ public class Main {
         }
 
         if (opera == 'q') {
-            System.out.println("Now we have a query.");
+            QueryOperation queryOperation = new QueryOperation(line);
+            String queryFormat = "type: %s, price: %d";
+            String queryMassage = String.format(queryFormat, queryOperation.getType());
+            System.out.println(queryMassage);
+
         }
 
         if (opera == 'o') {
-            System.out.println("Now we have your order.");
+            OrderOperation orderOperation = new OrderOperation(line);
         }
         System.out.println();
     }
