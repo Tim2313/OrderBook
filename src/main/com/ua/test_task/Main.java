@@ -3,23 +3,24 @@ package com.ua.test_task;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.SortedMap;
 
 public class Main {
+     static Memory memory = new Memory();
+
     public static void main(String[] args) {
         Path filepath = Paths.get("/home/timatam/coding/TestTaskProxyBand/src/resources/input.txt");
         File file = filepath.toFile();
         Path fileOutputPath = Paths.get("/home/timatam/coding/TestTaskProxyBand/out/output.txt");
         File fileOutput = fileOutputPath.toFile();
-        try (
-                FileReader fr = new FileReader(file);
-                FileWriter fw = new FileWriter(fileOutput);
-                BufferedReader br = new BufferedReader(fr);
+        try (FileReader fr = new FileReader(file); FileWriter fw = new FileWriter(fileOutput); BufferedReader br = new BufferedReader(fr);
 
         ) {
             while (br.ready()) {
                 String line = br.readLine();
                 parseLine(line);
-
             }
 
         } catch (IOException e) {
@@ -30,27 +31,29 @@ public class Main {
     private static void parseLine(String line) {
         char opera = line.charAt(0);
 
-        String massageFormat = "Now im parsing line: %s.";
-        String massage = String.format(massageFormat, line);
-        System.out.println(massage);
-
-
         if (opera == 'u') {
             UpdateOperation updateOperation = new UpdateOperation(line);
+
+            memory.saveAsk(updateOperation);
+            memory.saveBid(updateOperation);
+
         }
 
         if (opera == 'q') {
-            QueryOperation queryOperation = new QueryOperation(line);
-            String queryFormat = "type: %s, price: %d";
-            String queryMassage = String.format(queryFormat, queryOperation.getType());
-            System.out.println(queryMassage);
+            String[] splitline = line.split(",");
+            if (splitline.length == 3) {
+                QueryOperationByType queryOperationByType = new QueryOperationByType(line);
 
+            } else {
+                QueryOperationBest queryOperation = new QueryOperationBest(line);
+
+
+            }
         }
 
         if (opera == 'o') {
             OrderOperation orderOperation = new OrderOperation(line);
         }
-        System.out.println();
     }
 
 }
