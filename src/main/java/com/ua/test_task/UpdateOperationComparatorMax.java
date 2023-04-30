@@ -2,7 +2,7 @@ package com.ua.test_task;
 
 import java.util.Comparator;
 
-public class UpdateOperationComparator implements Comparator<UpdateOperation> {
+public class UpdateOperationComparatorMax implements Comparator<UpdateOperation> {
 
     public int compare(UpdateOperation lhs, UpdateOperation rhs) {
         int priceLhs = lhs.getPrice();

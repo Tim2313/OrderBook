@@ -55,7 +55,7 @@ public class Main {
                 if (queryOperationBest.getType().equals("best_bid")) {
                     List<UpdateOperation> bids = memory.getBids();
 
-                    UpdateOperation max = Collections.max(bids, new UpdateOperationComparator());
+                    UpdateOperation max = Collections.max(bids, new UpdateOperationComparatorMax());
                     int price = max.getPrice();
                     int size = max.getSize();
                     String formatMassage = "Best_bid:\nprice: %d, size: %d\n";
@@ -66,7 +66,7 @@ public class Main {
                 if (queryOperationBest.getType().equals("best_ask")) {
                     List<UpdateOperation> asks = memory.getAsks();
 
-                    UpdateOperation max = Collections.max(asks, new UpdateOperationComparator());
+                    UpdateOperation max = Collections.max(asks, new UpdateOperationComparatorMax());
                     int price = max.getPrice();
                     int size = max.getSize();
                     String formatMassage = "Best_ask:\nprice: %d, size: %d\n";
@@ -79,8 +79,33 @@ public class Main {
 
         if (opera == 'o') {
             OrderOperation orderOperation = new OrderOperation(line);
-        }
-    }
+            if (orderOperation.getType().equals("sell")) {
+                List<UpdateOperation> bids = memory.getBids();
 
+                UpdateOperation max = Collections.max(bids, new UpdateOperationComparatorMax());
+                int price = max.getPrice();
+                int size = max.getSize() - 1;
+                int orderSize = orderOperation.getSize();
+                String typeOfOrder = orderOperation.getType();
+                String orderFormat = "After order - %s - %d, we have bid: %d %d";
+                String orderMassage = String.format(orderFormat, typeOfOrder, orderSize, price, size);
+                System.out.println(orderMassage);
+            }
+            if (orderOperation.getType().equals("buy")) {
+                List<UpdateOperation> ask = memory.getBids();
+
+                UpdateOperation min = Collections.max(ask, new UpdateOperationComparatorMin());
+                int price = min.getPrice();
+                int size = min.getSize() + 1;
+                int orderSize = orderOperation.getSize();
+                String typeOfOrder = orderOperation.getType();
+                String orderFormat = "After order - %s - %d, we have bid: %d %d";
+                String orderMassage = String.format(orderFormat, typeOfOrder, orderSize, price, size);
+                System.out.println(orderMassage);
+
+            }
+        }
+
+    }
 }
 
