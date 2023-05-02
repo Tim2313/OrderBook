@@ -9,7 +9,7 @@ public class Main {
     static Memory memory = new Memory();
 
     public static void main(String[] args) {
-        Path filepath = Paths.get("/home/timatam/coding/TestTaskProxyBand/src/main/resources/input.txt");
+        Path filepath = Paths.get("/home/timatam/coding/TestTaskProxyBand/src/main/resources/input3.txt");
         File file = filepath.toFile();
         Path fileOutputPath = Paths.get("/home/timatam/coding/TestTaskProxyBand/out/output.txt");
         File fileOutput = fileOutputPath.toFile();
@@ -84,7 +84,8 @@ public class Main {
 
                 UpdateOperation max = Collections.max(bids, new UpdateOperationComparatorMax());
                 int price = max.getPrice();
-                int size = max.getSize() - 1;
+                int size = max.getSize() - orderOperation.getSize();
+                max.setSize(size);
                 int orderSize = orderOperation.getSize();
                 String typeOfOrder = orderOperation.getType();
                 String orderFormat = "After order - %s - %d, we have bid: %d %d";
@@ -96,7 +97,11 @@ public class Main {
 
                 UpdateOperation min = Collections.max(ask, new UpdateOperationComparatorMin());
                 int price = min.getPrice();
-                int size = min.getSize() + 1;
+                int size = min.getSize() + orderOperation.getSize();
+                min.setSize(size);
+                // CRUD
+                // Create Read Update Delete
+                // Update = delete + create
                 int orderSize = orderOperation.getSize();
                 String typeOfOrder = orderOperation.getType();
                 String orderFormat = "After order - %s - %d, we have bid: %d %d";

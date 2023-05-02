@@ -3,7 +3,7 @@ package com.ua.test_task;
 public class UpdateOperation {
 
     private final int price;
-    private final int size;
+    private int size;
     private final String type;
 
     public UpdateOperation(String line) {
@@ -24,4 +24,9 @@ public class UpdateOperation {
     public String getType() {
         return type;
     }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
 }
