@@ -1,8 +1,0 @@
-./QueryOperationBest.java
-./Memory.java
-./Main.java
-./OrderOperation.java
-./UpdateOperationComparatorMax.java
-./UpdateOperation.java
-./UpdateOperationComparatorMin.java
-./QueryOperationByType.java

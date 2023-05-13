@@ -9,16 +9,16 @@ public class Main {
     static Memory memory = new Memory();
 
     public static void main(String[] args) {
-        Path filepath = Paths.get("/home/timatam/coding/TestTaskProxyBand/src/main/resources/input3.txt");
+        Path filepath = Paths.get("input.txt");
         File file = filepath.toFile();
-        Path fileOutputPath = Paths.get("/home/timatam/coding/TestTaskProxyBand/out/output.txt");
+        Path fileOutputPath = Paths.get("output.txt");
         File fileOutput = fileOutputPath.toFile();
         try (FileReader fr = new FileReader(file); FileWriter fw = new FileWriter(fileOutput); BufferedReader br = new BufferedReader(fr);
 
         ) {
             while (br.ready()) {
                 String line = br.readLine();
-                parseLine(line);
+                parseLine(line, fw);
             }
 
         } catch (IOException e) {
@@ -26,7 +26,7 @@ public class Main {
         }
     }
 
-    private static void parseLine(String line) {
+    private static void parseLine(String line, FileWriter fw) throws IOException {
         char opera = line.charAt(0);
 
         if (opera == 'u') {
@@ -48,7 +48,7 @@ public class Main {
                     int price = queryOperationByType.getValue();
                     String formatMassage = "For price:%d the size is: %d.\n";
                     String massage = String.format(formatMassage, price, size);
-                    System.out.println(massage);
+                    fw.write(massage);
                 }
             } else {
                 QueryOperationBest queryOperationBest = new QueryOperationBest(line);
@@ -60,7 +60,7 @@ public class Main {
                     int size = max.getSize();
                     String formatMassage = "Best_bid:\nprice: %d, size: %d\n";
                     String massage = String.format(formatMassage, price, size);
-                    System.out.println(massage);
+                    fw.write(massage);
 
                 }
                 if (queryOperationBest.getType().equals("best_ask")) {
@@ -71,7 +71,7 @@ public class Main {
                     int size = max.getSize();
                     String formatMassage = "Best_ask:\nprice: %d, size: %d\n";
                     String massage = String.format(formatMassage, price, size);
-                    System.out.println(massage);
+                    fw.write(massage);
                 }
 
             }
@@ -88,9 +88,9 @@ public class Main {
                 max.setSize(size);
                 int orderSize = orderOperation.getSize();
                 String typeOfOrder = orderOperation.getType();
-                String orderFormat = "After order - %s - %d, we have bid: %d %d";
+                String orderFormat = "After order - %s - %d, we have bid: %d %d\n";
                 String orderMassage = String.format(orderFormat, typeOfOrder, orderSize, price, size);
-                System.out.println(orderMassage);
+                fw.write(orderMassage);
             }
             if (orderOperation.getType().equals("buy")) {
                 List<UpdateOperation> ask = memory.getBids();
@@ -104,9 +104,9 @@ public class Main {
                 // Update = delete + create
                 int orderSize = orderOperation.getSize();
                 String typeOfOrder = orderOperation.getType();
-                String orderFormat = "After order - %s - %d, we have bid: %d %d";
+                String orderFormat = "After order - %s - %d, we have bid: %d %d\n";
                 String orderMassage = String.format(orderFormat, typeOfOrder, orderSize, price, size);
-                System.out.println(orderMassage);
+                fw.write(orderMassage);
 
             }
         }
