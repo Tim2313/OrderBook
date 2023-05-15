@@ -1,4 +1,6 @@
-package com.ua.test_task;
+package com.ua.test_task.model;
+
+import com.ua.test_task.service.OperationInitializationService;
 
 public class UpdateOperation {
 
@@ -6,11 +8,10 @@ public class UpdateOperation {
     private int size;
     private final String type;
 
-    public UpdateOperation(String line) {
-        String[] splitString = line.split(",");
-        price = Integer.parseInt(splitString[1]);
-        size = Integer.parseInt(splitString[2]);
-        type = splitString[3];
+    public UpdateOperation(int price, int size, String type){
+        this.price = price;
+        this.size = size;
+        this.type = type;
     }
 
     public int getPrice() {

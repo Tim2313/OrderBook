@@ -1,9 +1,5 @@
 package com.ua.test_task.utils;
 
-import com.ua.test_task.UpdateOperation;
-
-import java.lang.reflect.Type;
-
 public class TestUtils {
 
     public static void testFailed(String description) {

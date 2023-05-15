@@ -1,4 +1,4 @@
-package com.ua.test_task;
+package com.ua.test_task.model;
 
 public class OrderOperation {
 
@@ -6,12 +6,10 @@ public class OrderOperation {
 
     private final int size;
 
-    public OrderOperation(String line) {
-        String[] splitString = line.split(",");
-        type = splitString[1];
-        size = Integer.parseInt(splitString[2]);
+    public OrderOperation(String type, int size){
+        this.type = type;
+        this.size = size;
     }
-
     public String getType() {
         return type;
     }

@@ -1,14 +1,13 @@
-package com.ua.test_task;
+package com.ua.test_task.model;
 
 public class QueryOperationByType {
 
     private final String type;
     private final int value;
 
-    public QueryOperationByType(String line) {
-        String[] splitString = line.split(",");
-        type = splitString[1];
-        value = Integer.parseInt(splitString[2]);
+    public QueryOperationByType(String type, int value){
+        this.type = type;
+        this.value = value;
     }
 
     public String getType() {

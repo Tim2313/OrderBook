@@ -1,4 +1,6 @@
-package com.ua.test_task;
+package com.ua.test_task.service;
+
+import com.ua.test_task.model.UpdateOperation;
 
 import java.util.Comparator;
 

@@ -1,5 +1,11 @@
 package com.ua.test_task;
 
+import com.ua.test_task.model.*;
+import com.ua.test_task.service.Memory;
+import com.ua.test_task.service.OperationInitializationService;
+import com.ua.test_task.service.UpdateOperationComparatorMax;
+import com.ua.test_task.service.UpdateOperationComparatorMin;
+
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -27,22 +33,23 @@ public class Main {
     }
 
     private static void parseLine(String line, FileWriter fw) throws IOException {
-        char opera = line.charAt(0);
-
-        if (opera == 'u') {
-            UpdateOperation updateOperation = new UpdateOperation(line);
+        char operation = line.charAt(0);
+        OperationType operationType = OperationInitializationService.parseOperationType(operation);
+        if (operationType == OperationType.UpdateOperation) {
+            UpdateOperation updateOperation = OperationInitializationService.createUpdateOperation(line);
             if (updateOperation.getType().equals("ask")) {
                 memory.saveAsk(updateOperation);
             }
             if (updateOperation.getType().equals("bid")) {
                 memory.saveBid(updateOperation);
             }
+
         }
 
-        if (opera == 'q') {
+        if (operationType == OperationType.QueryOperation) {
             String[] splitline = line.split(",");
             if (splitline.length == 3) {
-                QueryOperationByType queryOperationByType = new QueryOperationByType(line);
+                QueryOperationByType queryOperationByType = OperationInitializationService.createQueryOperationByType(line);
                 if (queryOperationByType.getType().equals("size")) {
                     int size = memory.getByPriceBid(queryOperationByType.getValue());
                     int price = queryOperationByType.getValue();
@@ -51,10 +58,9 @@ public class Main {
                     fw.write(massage);
                 }
             } else {
-                QueryOperationBest queryOperationBest = new QueryOperationBest(line);
+                QueryOperationBest queryOperationBest = OperationInitializationService.createQueryOperationBest(line);
                 if (queryOperationBest.getType().equals("best_bid")) {
                     List<UpdateOperation> bids = memory.getBids();
-
                     UpdateOperation max = Collections.max(bids, new UpdateOperationComparatorMax());
                     int price = max.getPrice();
                     int size = max.getSize();
@@ -77,8 +83,8 @@ public class Main {
             }
         }
 
-        if (opera == 'o') {
-            OrderOperation orderOperation = new OrderOperation(line);
+        if (operationType == OperationType.OrderOperation) {
+            OrderOperation orderOperation = OperationInitializationService.createOrderOperation(line);
             if (orderOperation.getType().equals("sell")) {
                 List<UpdateOperation> bids = memory.getBids();
 
