@@ -8,7 +8,9 @@ else
 	mkdir $FILE
 fi
 
-javac src/main/java/com/ua/test_task/*.java -d $FILE
+find ./src/ -type f -name "*.java" > sources.txt
+javac -d ./out/ @sources.txt
+rm sources.txt
 
 cd $FILE
 
