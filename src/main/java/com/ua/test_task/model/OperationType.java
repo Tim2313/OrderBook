@@ -1,7 +1,7 @@
 package com.ua.test_task.model;
 
 public enum OperationType {
-    OrderOperation('o'), UpdateOperation('u'), QueryOperation('q');
+    ORDER_OPERATION('o'), UPDATE_OPERATION('u'), QUERY_OPERATION('q');
 
     private final char symbol;
 
