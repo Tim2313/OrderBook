@@ -76,7 +76,7 @@ public class Main {
 
         if (operationType == OperationType.ORDER_OPERATION) {
             OrderOperation orderOperation = OperationInitializationService.createOrderOperation(line);
-            if (orderOperation.getType().equals("sell")) {
+            if (orderOperation.getType().equals(OrderOperationType.SELL)) {
                 List<UpdateOperation> bids = MEMORY.getBids();
 
                 UpdateOperation max = Collections.max(bids, new UpdateOperationComparatorMax());
@@ -84,12 +84,12 @@ public class Main {
                 int size = max.getSize() - orderOperation.getSize();
                 max.setSize(size);
                 int orderSize = orderOperation.getSize();
-                String typeOfOrder = orderOperation.getType();
+                OrderOperationType typeOfOrder = orderOperation.getType();
                 String orderFormat = "After order - %s - %d, we have bid: %d %d\n";
                 String orderMassage = String.format(orderFormat, typeOfOrder, orderSize, price, size);
                 WRITTER_SERVICE.write(orderMassage);
             }
-            if (orderOperation.getType().equals("buy")) {
+            if (orderOperation.getType().equals(OrderOperationType.BUY)) {
                 List<UpdateOperation> ask = MEMORY.getBids();
 
                 UpdateOperation min = Collections.max(ask, new UpdateOperationComparatorMin());
@@ -100,7 +100,7 @@ public class Main {
                 // Create Read Update Delete
                 // Update = delete + create
                 int orderSize = orderOperation.getSize();
-                String typeOfOrder = orderOperation.getType();
+                OrderOperationType typeOfOrder = orderOperation.getType();
                 String orderFormat = "After order - %s - %d, we have bid: %d %d\n";
                 String orderMassage = String.format(orderFormat, typeOfOrder, orderSize, price, size);
                 WRITTER_SERVICE.write(orderMassage);
