@@ -25,8 +25,9 @@ public class OperationInitializationService {
     public static OrderOperation createOrderOperation(String line) {
         String[] splitString = line.split(",");
         String type = splitString[1];
+        OrderOperationType orderOperationType = parseOrderOperationType(type);
         int size = Integer.parseInt(splitString[2]);
-        return new OrderOperation(type, size);
+        return new OrderOperation(orderOperationType, size);
     }
 
     public static QueryOperationByType createQueryOperationByType(String line) {
@@ -60,6 +61,18 @@ public class OperationInitializationService {
             }
         }
 
+        return null;
+    }
+
+    public static OrderOperationType parseOrderOperationType(String type) {
+        OrderOperationType[] allOrderOperationTypes = OrderOperationType.values();
+
+        for (OrderOperationType orderOperationType : allOrderOperationTypes) {
+            String rawType = orderOperationType.getType();
+            if (type.equals(rawType)) {
+                return orderOperationType;
+            }
+        }
         return null;
     }
 }
