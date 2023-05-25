@@ -15,7 +15,7 @@ public class Main {
     private static final Memory MEMORY = new Memory();
     private static final WritterService WRITTER_SERVICE = new WritterService(OUTPUT_DESTINATION);
     private static final ReaderService READER_SERVICE = new ReaderService(INPUT_DESTINATION);
-    private static final UpdateOperationService updateOperationService = new UpdateOperationService(MEMORY);
+    private static final UpdateOperationService UPDATE_OPERATION_SERVICE = new UpdateOperationService(MEMORY);
 
     public static void main(String[] args) {
 
@@ -32,16 +32,16 @@ public class Main {
 
         char operation = line.charAt(0);
         OperationType operationType = OperationInitializationService.parseOperationType(operation);
-        if (operationType == OperationType.UpdateOperation) {
+        if (operationType == OperationType.UPDATE_OPERATION) {
             UpdateOperation updateOperation = OperationInitializationService.createUpdateOperation(line);
-            updateOperationService.execute(updateOperation);
+            UPDATE_OPERATION_SERVICE.execute(updateOperation);
         }
 
-        if (operationType == OperationType.QueryOperation) {
+        if (operationType == OperationType.QUERY_OPERATION) {
             String[] splitline = line.split(",");
             if (splitline.length == 3) {
                 QueryOperationByType queryOperationByType = OperationInitializationService.createQueryOperationByType(line);
-                if (queryOperationByType.getType().equals("size")) {
+                if (queryOperationByType.getType() == QueryOperationType.SIZE) {
                     int size = MEMORY.getByPriceBid(queryOperationByType.getValue());
                     int price = queryOperationByType.getValue();
                     String formatMassage = "For price:%d the size is: %d.\n";
@@ -50,7 +50,7 @@ public class Main {
                 }
             } else {
                 QueryOperationBest queryOperationBest = OperationInitializationService.createQueryOperationBest(line);
-                if (queryOperationBest.getType().equals("best_bid")) {
+                if (queryOperationBest.getType() == QueryOperationType.BEST_BID) {
                     List<UpdateOperation> bids = MEMORY.getBids();
                     UpdateOperation max = Collections.max(bids, new UpdateOperationComparatorMax());
                     int price = max.getPrice();
@@ -60,7 +60,7 @@ public class Main {
                     WRITTER_SERVICE.write(massage);
 
                 }
-                if (queryOperationBest.getType().equals("best_ask")) {
+                if (queryOperationBest.getType() == QueryOperationType.BEST_ASK) {
                     List<UpdateOperation> asks = MEMORY.getAsks();
 
                     UpdateOperation max = Collections.max(asks, new UpdateOperationComparatorMax());
@@ -74,7 +74,7 @@ public class Main {
             }
         }
 
-        if (operationType == OperationType.OrderOperation) {
+        if (operationType == OperationType.ORDER_OPERATION) {
             OrderOperation orderOperation = OperationInitializationService.createOrderOperation(line);
             if (orderOperation.getType().equals("sell")) {
                 List<UpdateOperation> bids = MEMORY.getBids();

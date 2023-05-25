@@ -17,8 +17,10 @@ public class OperationInitializationService {
     public static QueryOperationBest createQueryOperationBest(String line) {
         String[] splitString = line.split(",");
         String type = splitString[1];
-        return new QueryOperationBest(type);
+        QueryOperationType queryOperationType = parseQueryOperationType(type);
+        return new QueryOperationBest(queryOperationType);
     }
+
 
     public static OrderOperation createOrderOperation(String line) {
         String[] splitString = line.split(",");
@@ -30,8 +32,9 @@ public class OperationInitializationService {
     public static QueryOperationByType createQueryOperationByType(String line) {
         String[] splitString = line.split(",");
         String type = splitString[1];
+        QueryOperationType queryOperationType = parseQueryOperationType(type);
         int value = Integer.parseInt(splitString[2]);
-        return new QueryOperationByType(type, value);
+        return new QueryOperationByType(queryOperationType, value);
     }
 
     public static OperationType parseOperationType(char operation) {
@@ -41,6 +44,19 @@ public class OperationInitializationService {
             char symbol = operationType.getSymbol();
             if (symbol == operation) {
                 return operationType;
+            }
+        }
+
+        return null;
+    }
+
+    public static QueryOperationType parseQueryOperationType(String type) {
+        QueryOperationType[] allQueryOperationTypes = QueryOperationType.values();
+
+        for (QueryOperationType queryOperationType : allQueryOperationTypes) {
+            String rawType = queryOperationType.getType();
+            if (type.equals(rawType)) {
+                return queryOperationType;
             }
         }
 
