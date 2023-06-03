@@ -1,9 +1,11 @@
-package com.ua.test_task.service;
+package com.ua.test_task.service.operation;
 
 import com.ua.test_task.model.QueryOperationBest;
 import com.ua.test_task.model.QueryOperationByType;
 import com.ua.test_task.model.QueryOperationType;
 import com.ua.test_task.model.UpdateOperation;
+import com.ua.test_task.service.Memory;
+import com.ua.test_task.service.WritterService;
 import com.ua.test_task.service.comparator.UpdateOperationComparatorMax;
 
 import java.util.Collections;
