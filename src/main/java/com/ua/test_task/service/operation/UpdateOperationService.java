@@ -1,7 +1,8 @@
-package com.ua.test_task.service;
+package com.ua.test_task.service.operation;
 
-import com.ua.test_task.Main;
 import com.ua.test_task.model.UpdateOperation;
+import com.ua.test_task.service.Memory;
+import com.ua.test_task.service.operation.OperationInitializationService;
 
 public class UpdateOperationService {
 

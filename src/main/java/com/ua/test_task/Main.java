@@ -1,6 +1,7 @@
 package com.ua.test_task;
 
 import com.ua.test_task.service.*;
+import com.ua.test_task.service.operation.OperationTypeProcessor;
 
 import static com.ua.test_task.constant.FileConstant.INPUT_DESTINATION;
 import static com.ua.test_task.constant.FileConstant.OUTPUT_DESTINATION;
