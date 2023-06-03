@@ -14,7 +14,7 @@ public class OperationTypeProcessor {
     public OperationTypeProcessor(Memory memory, WritterService writterService) {
         UpdateOperationService updateOperationService = new UpdateOperationService(memory);
         QueryOperationService queryOperationService = new QueryOperationService(memory, writterService);
-        OrderOperationService orderOperationService = new OrderOperationService(memory, writterService);
+        OrderOperationService orderOperationService = new OrderOperationService(memory);
 
         operationTypeProcessor.put(OperationType.UPDATE_OPERATION, updateOperationService::execute);
         operationTypeProcessor.put(OperationType.QUERY_OPERATION, queryOperationService::execute);

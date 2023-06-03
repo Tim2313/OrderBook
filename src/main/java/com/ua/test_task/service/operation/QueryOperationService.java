@@ -28,8 +28,8 @@ public class QueryOperationService {
             if (queryOperationByType.getType() == QueryOperationType.SIZE) {
                 int size = memory.getByPriceBid(queryOperationByType.getValue());
                 int price = queryOperationByType.getValue();
-                String formatMassage = "For price:%d the size is: %d.\n";
-                String massage = String.format(formatMassage, price, size);
+                String formatMassage = "%d\n";
+                String massage = String.format(formatMassage, size);
                 writterService.write(massage);
             }
         } else {
@@ -39,7 +39,7 @@ public class QueryOperationService {
                 UpdateOperation max = Collections.max(bids, new UpdateOperationComparatorMax());
                 int price = max.getPrice();
                 int size = max.getSize();
-                String formatMassage = "Best_bid:\nprice: %d, size: %d\n";
+                String formatMassage = "%d %d\n";
                 String massage = String.format(formatMassage, price, size);
                 writterService.write(massage);
 
@@ -50,7 +50,7 @@ public class QueryOperationService {
                 UpdateOperation max = Collections.max(asks, new UpdateOperationComparatorMax());
                 int price = max.getPrice();
                 int size = max.getSize();
-                String formatMassage = "Best_ask:\nprice: %d, size: %d\n";
+                String formatMassage = "%d %d\n";
                 String massage = String.format(formatMassage, price, size);
                 writterService.write(massage);
             }
