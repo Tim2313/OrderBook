@@ -11,7 +11,8 @@ public class OperationInitializationService {
         int price = Integer.parseInt(splitString[1]);
         int size = Integer.parseInt(splitString[2]);
         String type = splitString[3];
-        return new UpdateOperation(price, size, type);
+        BidOrAskOperation bidOrAskOperation = parseUpdateOperation(type);
+        return new UpdateOperation(price, size, bidOrAskOperation);
     }
 
     public static QueryOperationBest createQueryOperationBest(String line) {
@@ -71,6 +72,18 @@ public class OperationInitializationService {
             String rawType = orderOperationType.getType();
             if (type.equals(rawType)) {
                 return orderOperationType;
+            }
+        }
+        return null;
+    }
+
+    public static BidOrAskOperation parseUpdateOperation(String type) {
+        BidOrAskOperation[] allUpdateOperationTypes = BidOrAskOperation.values();
+
+        for (BidOrAskOperation bidOrAskOperation : allUpdateOperationTypes) {
+            String rawType = bidOrAskOperation.getType();
+            if (type.equals(rawType)) {
+                return bidOrAskOperation;
             }
         }
         return null;

@@ -3,9 +3,9 @@ package com.ua.test_task.model;
 public class UpdateOperation {
     private final int price;
     private int size;
-    private final String type;
+    private final BidOrAskOperation type;
 
-    public UpdateOperation(int price, int size, String type) {
+    public UpdateOperation(int price, int size, BidOrAskOperation type) {
         this.price = price;
         this.size = size;
         this.type = type;
@@ -19,7 +19,7 @@ public class UpdateOperation {
         return size;
     }
 
-    public String getType() {
+    public BidOrAskOperation getType() {
         return type;
     }
 

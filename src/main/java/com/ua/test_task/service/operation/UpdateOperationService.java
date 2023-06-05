@@ -1,8 +1,8 @@
 package com.ua.test_task.service.operation;
 
+import com.ua.test_task.model.BidOrAskOperation;
 import com.ua.test_task.model.UpdateOperation;
 import com.ua.test_task.service.Memory;
-import com.ua.test_task.service.operation.OperationInitializationService;
 
 public class UpdateOperationService {
 
@@ -14,10 +14,10 @@ public class UpdateOperationService {
 
     public void execute(String line) {
         UpdateOperation updateOperation = OperationInitializationService.createUpdateOperation(line);
-        if (updateOperation.getType().equals("ask")) {
+        if (updateOperation.getType() == BidOrAskOperation.ASK) {
             memory.saveAsk(updateOperation);
         }
-        if (updateOperation.getType().equals("bid")) {
+        if (updateOperation.getType() == BidOrAskOperation.BID) {
             memory.saveBid(updateOperation);
         }
     }

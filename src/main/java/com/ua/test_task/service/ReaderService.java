@@ -13,15 +13,15 @@ public class ReaderService {
         File file = filepath.toFile();
 
         FileReader fileReader;
-        BufferedReader bufferedReader;
+        BufferedReader buffReader;
         try {
             fileReader = new FileReader(file);
-            bufferedReader = new BufferedReader(fileReader);
+            buffReader = new BufferedReader(fileReader);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        this.bufferedReader = bufferedReader;
+        this.bufferedReader = buffReader;
     }
 
     public String read() {
