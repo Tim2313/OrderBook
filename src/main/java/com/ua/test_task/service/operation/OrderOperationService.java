@@ -4,7 +4,6 @@ import com.ua.test_task.model.OrderOperation;
 import com.ua.test_task.model.OrderOperationType;
 import com.ua.test_task.model.UpdateOperation;
 import com.ua.test_task.service.Memory;
-import com.ua.test_task.service.WritterService;
 import com.ua.test_task.service.comparator.UpdateOperationComparatorMax;
 import com.ua.test_task.service.comparator.UpdateOperationComparatorMin;
 

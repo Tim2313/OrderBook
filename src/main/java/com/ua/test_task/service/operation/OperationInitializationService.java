@@ -2,16 +2,14 @@ package com.ua.test_task.service.operation;
 
 import com.ua.test_task.model.*;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class OperationInitializationService {
     public static UpdateOperation createUpdateOperation(String line) {
         String[] splitString = line.split(",");
         int price = Integer.parseInt(splitString[1]);
         int size = Integer.parseInt(splitString[2]);
         String type = splitString[3];
-        return new UpdateOperation(price, size, type);
+        UpdateOperationType updateOperationType = parseUpdateOperationType(type);
+        return new UpdateOperation(price, size, updateOperationType);
     }
 
     public static QueryOperationBest createQueryOperationBest(String line) {
@@ -74,5 +72,9 @@ public class OperationInitializationService {
             }
         }
         return null;
+    }
+
+    public static UpdateOperationType parseUpdateOperationType(String type) {
+        return UpdateOperationType.TITLE_MAP.get(type);
     }
 }

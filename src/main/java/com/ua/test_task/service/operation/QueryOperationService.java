@@ -22,12 +22,11 @@ public class QueryOperationService {
     }
 
     public void execute(String line) {
-        String[] splitline = line.split(",");
-        if (splitline.length == 3) {
+        String[] splitLine = line.split(",");
+        if (splitLine.length == 3) {
             QueryOperationByType queryOperationByType = OperationInitializationService.createQueryOperationByType(line);
             if (queryOperationByType.getType() == QueryOperationType.SIZE) {
                 int size = memory.getByPriceBid(queryOperationByType.getValue());
-                int price = queryOperationByType.getValue();
                 String formatMassage = "%d\n";
                 String massage = String.format(formatMassage, size);
                 writterService.write(massage);
@@ -46,7 +45,6 @@ public class QueryOperationService {
             }
             if (queryOperationBest.getType() == QueryOperationType.BEST_ASK) {
                 List<UpdateOperation> asks = memory.getAsks();
-
                 UpdateOperation max = Collections.max(asks, new UpdateOperationComparatorMax());
                 int price = max.getPrice();
                 int size = max.getSize();
