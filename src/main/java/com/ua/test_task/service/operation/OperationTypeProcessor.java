@@ -23,7 +23,7 @@ public class OperationTypeProcessor {
 
     public void process(String line) {
         char operation = line.charAt(0);
-        OperationType operationType = OperationInitializationService.parseOperationType(operation);
+        OperationType operationType = OperationType.getBySymbol(operation);
         operationTypeProcessor.get(operationType).accept(line);
     }
 }
