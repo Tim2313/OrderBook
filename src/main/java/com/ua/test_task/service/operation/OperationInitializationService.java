@@ -2,16 +2,13 @@ package com.ua.test_task.service.operation;
 
 import com.ua.test_task.model.*;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class OperationInitializationService {
     public static UpdateOperation createUpdateOperation(String line) {
         String[] splitString = line.split(",");
         int price = Integer.parseInt(splitString[1]);
         int size = Integer.parseInt(splitString[2]);
         String type = splitString[3];
-        BidOrAskOperation bidOrAskOperation = parseUpdateOperation(type);
+        UpdateOperationType bidOrAskOperation = parseUpdateOperationType(type);
         return new UpdateOperation(price, size, bidOrAskOperation);
     }
 
@@ -77,15 +74,7 @@ public class OperationInitializationService {
         return null;
     }
 
-    public static BidOrAskOperation parseUpdateOperation(String type) {
-        BidOrAskOperation[] allUpdateOperationTypes = BidOrAskOperation.values();
-
-        for (BidOrAskOperation bidOrAskOperation : allUpdateOperationTypes) {
-            String rawType = bidOrAskOperation.getType();
-            if (type.equals(rawType)) {
-                return bidOrAskOperation;
-            }
-        }
-        return null;
+    public static UpdateOperationType parseUpdateOperationType(String type) {
+        return UpdateOperationType.TITLE_MAP.get(type);
     }
 }

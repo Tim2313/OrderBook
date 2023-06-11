@@ -22,8 +22,8 @@ public class QueryOperationService {
     }
 
     public void execute(String line) {
-        String[] splitline = line.split(",");
-        if (splitline.length == 3) {
+        String[] splitLine = line.split(",");
+        if (splitLine.length == 3) {
             QueryOperationByType queryOperationByType = OperationInitializationService.createQueryOperationByType(line);
             if (queryOperationByType.getType() == QueryOperationType.SIZE) {
                 int size = memory.getByPriceBid(queryOperationByType.getValue());
