@@ -1,5 +1,7 @@
 package com.ua.test_task.model;
 
+import com.ua.test_task.model.enums.UpdateOperationType;
+
 public class UpdateOperation {
     private final int price;
     private int size;

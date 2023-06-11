@@ -1,6 +1,9 @@
 package com.ua.test_task.service.operation;
 
 import com.ua.test_task.model.*;
+import com.ua.test_task.model.enums.OrderOperationType;
+import com.ua.test_task.model.enums.QueryOperationType;
+import com.ua.test_task.model.enums.UpdateOperationType;
 
 public final class OperationInitializationService {
     private static final String LINE_DELIMITER = ",";
