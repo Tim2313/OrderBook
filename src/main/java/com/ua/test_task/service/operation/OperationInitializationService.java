@@ -8,8 +8,8 @@ public class OperationInitializationService {
         int price = Integer.parseInt(splitString[1]);
         int size = Integer.parseInt(splitString[2]);
         String type = splitString[3];
-        UpdateOperationType bidOrAskOperation = parseUpdateOperationType(type);
-        return new UpdateOperation(price, size, bidOrAskOperation);
+        UpdateOperationType updateOperationType = parseUpdateOperationType(type);
+        return new UpdateOperation(price, size, updateOperationType);
     }
 
     public static QueryOperationBest createQueryOperationBest(String line) {
