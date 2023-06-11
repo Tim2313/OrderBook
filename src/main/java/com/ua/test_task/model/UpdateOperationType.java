@@ -9,11 +9,11 @@ public enum UpdateOperationType {
 
     private final String title;
 
-    public static final Map<String, UpdateOperationType> TITLE_MAP = new HashMap<>();
+    private static final Map<String, UpdateOperationType> TITLE_MAP = new HashMap<>();
 
     static {
-        TITLE_MAP.put(UpdateOperationType.ASK.getTitle(), UpdateOperationType.ASK);
-        TITLE_MAP.put(UpdateOperationType.BID.getTitle(), UpdateOperationType.BID);
+        TITLE_MAP.put(ASK.getTitle(), ASK);
+        TITLE_MAP.put(BID.getTitle(), BID);
     }
 
     UpdateOperationType(String title) {
@@ -22,5 +22,9 @@ public enum UpdateOperationType {
 
     public String getTitle() {
         return title;
+    }
+
+    public static UpdateOperationType getByTitle(String title){
+        return TITLE_MAP.get(title);
     }
 }
