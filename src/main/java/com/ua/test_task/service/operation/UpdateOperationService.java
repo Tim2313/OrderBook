@@ -1,6 +1,6 @@
 package com.ua.test_task.service.operation;
 
-import com.ua.test_task.model.UpdateOperationType;
+import com.ua.test_task.model.enums.UpdateOperationType;
 import com.ua.test_task.model.UpdateOperation;
 import com.ua.test_task.service.Memory;
 

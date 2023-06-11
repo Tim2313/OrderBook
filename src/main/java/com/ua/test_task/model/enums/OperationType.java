@@ -1,4 +1,4 @@
-package com.ua.test_task.model;
+package com.ua.test_task.model.enums;
 
 import java.util.HashMap;
 import java.util.Map;

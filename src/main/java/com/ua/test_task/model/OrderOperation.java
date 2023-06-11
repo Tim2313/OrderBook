@@ -1,5 +1,7 @@
 package com.ua.test_task.model;
 
+import com.ua.test_task.model.enums.OrderOperationType;
+
 public class OrderOperation {
 
     private final OrderOperationType type;

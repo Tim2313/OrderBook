@@ -1,7 +1,7 @@
 package com.ua.test_task.service.operation;
 
 import com.ua.test_task.model.OrderOperation;
-import com.ua.test_task.model.OrderOperationType;
+import com.ua.test_task.model.enums.OrderOperationType;
 import com.ua.test_task.model.UpdateOperation;
 import com.ua.test_task.service.Memory;
 import com.ua.test_task.service.comparator.UpdateOperationComparatorMax;

@@ -1,6 +1,6 @@
 package com.ua.test_task.service.operation;
 
-import com.ua.test_task.model.OperationType;
+import com.ua.test_task.model.enums.OperationType;
 import com.ua.test_task.service.*;
 
 import java.util.HashMap;
