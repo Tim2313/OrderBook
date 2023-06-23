@@ -31,7 +31,10 @@ Execute the program with help of the following command: `java -jar <jar_title>.j
 You will get the following results based on the input:
 
 - If input file is present:
-Program will give you an error.
+Program will give you an error:
+Exception in thread "main" java.lang.ExceptionInInitializerError
+Caused by: java.lang.RuntimeException: java.io.FileNotFoundException: input.txt (No such file or directory).
+And create empty file in the directory where you execute the program: 'output.txt'.
 
 - If there is no input file
 Program will give you an output file.
