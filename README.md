@@ -23,9 +23,12 @@ To build and compile the project, follow these steps:
 - Run the following command to build the JAR file: `mvn clean package`
 
 ## Usage
-The input file should contain only commands from block **Examples of syntax**.
+Directory should have file: '<your_input>.txt'
+The input file should contain only commands from section "Examples of syntax".
 The input file should be located in the same directory with the JAR file.
 Execute the program with help of the following command: `java -jar <jar_title>.jar`.
+
+You will get the following results based on the input:
 
 - If input file is present:
 Program will give you an error.
