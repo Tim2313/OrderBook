@@ -23,7 +23,14 @@ To build and compile the project, follow these steps:
 - Run the following command to build the JAR file: `mvn clean package`
 
 ## Usage
-- To start the program with the following command: `java -jar <your-project>.jar`
+You need to copy input file to the same directory which you move your project.jar.
+To execute the program with the following command: `java -jar <your-project>.jar`.
+
+- If input file is present:
+Program will give you an error.
+
+- If there is no input file
+Program will give you an output file.
 
 ## Pre-requisites:
 Before building and running the program, make sure 
