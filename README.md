@@ -23,8 +23,9 @@ To build and compile the project, follow these steps:
 - Run the following command to build the JAR file: `mvn clean package`
 
 ## Usage
-You need to copy input file to the same directory which you move your project.jar.
-To execute the program with the following command: `java -jar <your-project>.jar`.
+The input file should contain only commands from block **Examples of syntax**.
+The input file should be located in the same directory with the JAR file.
+Execute the program with help of the following command: `java -jar <jar_title>.jar`.
 
 - If input file is present:
 Program will give you an error.
@@ -64,7 +65,7 @@ It represents the maximum price that a buyer is willing to pay for the shares.
 
 - **SELL** - removes size shares out of bids, most expensive ones.
 
-### Examples:
+### Examples of syntax:
 - **u,\<price>\,\<size>\,bid** - set bid size at \<price> to \<size>.
 
 - **u,\<price>\,\<size>\,ask** - set ask size at \<price> to \<size>.
