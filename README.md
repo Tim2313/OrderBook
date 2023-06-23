@@ -21,7 +21,9 @@ Generally, the order book looks like the following example (B - bid, S - spread,
 To build and compile the project, follow these steps:
 - Open a terminal and navigate to the root directory of the project:`cd TestTaskProxyBand`
 - Run the following command to build the JAR file: `mvn clean package`
-- Then start the program with the following command: `java -jar <your-project>.jar`
+
+## Usage
+- To start the program with the following command: `java -jar <your-project>.jar`
 
 ## Pre-requisites:
 Before building and running the program, make sure 
