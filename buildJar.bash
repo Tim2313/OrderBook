@@ -16,3 +16,9 @@ cd $FILE
 
 jar cfm TestTaskBook.jar ../$MANIFEST_FILE ./* 
 
+cd .. 
+
+mkdir Test
+
+mv TestTaskBook.jar Test
+
