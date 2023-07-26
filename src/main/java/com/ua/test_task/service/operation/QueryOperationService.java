@@ -38,7 +38,7 @@ public class QueryOperationService {
                 UpdateOperation max = Collections.max(bids, new UpdateOperationComparatorMax());
                 int price = max.getPrice();
                 int size = max.getSize();
-                String formatMassage = "%d %d\n";
+                String formatMassage = "%d,%d\n";
                 String massage = String.format(formatMassage, price, size);
                 writterService.write(massage);
 
@@ -48,7 +48,7 @@ public class QueryOperationService {
                 UpdateOperation max = Collections.max(asks, new UpdateOperationComparatorMax());
                 int price = max.getPrice();
                 int size = max.getSize();
-                String formatMassage = "%d %d\n";
+                String formatMassage = "%d,%d\n";
                 String massage = String.format(formatMassage, price, size);
                 writterService.write(massage);
             }

@@ -1,5 +1,6 @@
 FILE=out
-MANIFEST_FILE=src/main/resources/MANIFEST.MF 
+MANIFEST_FILE=src/main/resources/MANIFEST.MF
+SOURCE_FILES=src/main/java/*
 
 if [ -e "$FILE" ] 
 then
@@ -14,5 +15,5 @@ rm sources.txt
 
 cd $FILE
 
-jar cfm TestTaskBook.jar ../$MANIFEST_FILE ./* 
+jar cfm TestTaskBook.jar ../$MANIFEST_FILE ./*  ../$SOURCE_FILES 
 
