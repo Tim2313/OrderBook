@@ -17,7 +17,9 @@ public class Main {
 
         while (READER_SERVICE.ready()) {
             String line = READER_SERVICE.read();
-            OPERATION_TYPE_PROCESSOR.process(line);
+            if (line.length() != 0) {
+                OPERATION_TYPE_PROCESSOR.process(line);
+            }
         }
 
         WRITTER_SERVICE.close();

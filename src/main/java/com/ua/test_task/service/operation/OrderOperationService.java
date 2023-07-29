@@ -27,9 +27,9 @@ public class OrderOperationService {
             max.setSize(size);
         }
         if (orderOperation.getType() == OrderOperationType.BUY) {
-            List<UpdateOperation> ask = memory.getBids();
-            UpdateOperation min = Collections.max(ask, new UpdateOperationComparatorMin());
-            int size = min.getSize() + orderOperation.getSize();
+            List<UpdateOperation> ask = memory.getAsks();
+            UpdateOperation min = Collections.min(ask, new UpdateOperationComparatorMin());
+            int size = min.getSize() - orderOperation.getSize();
             min.setSize(size);
         }
     }

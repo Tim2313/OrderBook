@@ -29,4 +29,12 @@ public class UpdateOperation {
         this.size = size;
     }
 
+    @Override
+    public String toString() {
+        return "UpdateOperation{" +
+                "price=" + price +
+                ", size=" + size +
+                ", type=" + type +
+                '}';
+    }
 }

@@ -7,20 +7,15 @@ import java.util.List;
 
 public class Memory {
 
-    private List<UpdateOperation> asks = new ArrayList<>();
-    private List<UpdateOperation> bids = new ArrayList<>();
-
-    public int getByPriceAsk(int price) {
-        for (int i = 0; i != asks.size(); i++) {
-            if (asks.get(i).getPrice() == price) {
-                return asks.get(i).getSize();
-            }
-        }
-        return 0;
-    }
+    private final List<UpdateOperation> asks = new ArrayList<>();
+    private final List<UpdateOperation> bids = new ArrayList<>();
 
     public List<UpdateOperation> getAsks() {
-        return asks;
+        return filterEmptySize(asks);
+    }
+
+    public List<UpdateOperation> getBids() {
+        return filterEmptySize(bids);
     }
 
     public void saveAsk(UpdateOperation updateOperation) {
@@ -31,11 +26,8 @@ public class Memory {
         bids.add(updateOperation);
     }
 
-    public List<UpdateOperation> getBids() {
-        return bids;
-    }
-
     public int getByPriceBid(int price) {
+
         for (int i = 0; i != bids.size(); i++) {
             if (bids.get(i).getPrice() == price) {
                 return bids.get(i).getSize();
@@ -44,5 +36,22 @@ public class Memory {
         return 0;
     }
 
+    public int getByPriceAsk(int price) {
+        for (int i = 0; i != asks.size(); i++) {
+            if (asks.get(i).getPrice() == price) {
+                return asks.get(i).getSize();
+            }
+        }
+        return 0;
+    }
 
+    private static List<UpdateOperation> filterEmptySize(List<UpdateOperation> all) {
+        List<UpdateOperation> result = new ArrayList<>();
+        for (UpdateOperation value : all) {
+            if (value.getSize() > 0) {
+                result.add(value);
+            }
+        }
+        return result;
+    }
 }

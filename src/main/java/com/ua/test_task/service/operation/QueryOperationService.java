@@ -7,6 +7,7 @@ import com.ua.test_task.model.UpdateOperation;
 import com.ua.test_task.service.Memory;
 import com.ua.test_task.service.WritterService;
 import com.ua.test_task.service.comparator.UpdateOperationComparatorMax;
+import com.ua.test_task.service.comparator.UpdateOperationComparatorMin;
 
 import java.util.Collections;
 import java.util.List;
@@ -22,11 +23,13 @@ public class QueryOperationService {
     }
 
     public void execute(String line) {
-        String[] splitLine = line.split(",");
-        if (splitLine.length == 3) {
+        boolean isQueryByType = isQueryByType(line);
+        if (isQueryByType) {
             QueryOperationByType queryOperationByType = OperationInitializationService.createQueryOperationByType(line);
             if (queryOperationByType.getType() == QueryOperationType.SIZE) {
-                int size = memory.getByPriceBid(queryOperationByType.getValue());
+                int bidSize = memory.getByPriceBid(queryOperationByType.getValue());
+                int askSize = memory.getByPriceAsk(queryOperationByType.getValue());
+                int size = bidSize + askSize;
                 String formatMassage = "%d\n";
                 String massage = String.format(formatMassage, size);
                 writterService.write(massage);
@@ -41,11 +44,10 @@ public class QueryOperationService {
                 String formatMassage = "%d,%d\n";
                 String massage = String.format(formatMassage, price, size);
                 writterService.write(massage);
-
             }
             if (queryOperationBest.getType() == QueryOperationType.BEST_ASK) {
                 List<UpdateOperation> asks = memory.getAsks();
-                UpdateOperation max = Collections.max(asks, new UpdateOperationComparatorMax());
+                UpdateOperation max = Collections.min(asks, new UpdateOperationComparatorMin());
                 int price = max.getPrice();
                 int size = max.getSize();
                 String formatMassage = "%d,%d\n";
@@ -53,5 +55,10 @@ public class QueryOperationService {
                 writterService.write(massage);
             }
         }
+    }
+
+    private boolean isQueryByType(String line) {
+        String[] splitLine = line.split(",");
+        return splitLine.length == 3;
     }
 }
