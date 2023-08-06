@@ -1,4 +1,0 @@
-u,100,5,ask
-u,95,3,bid
-q,best_ask
-q,best_bid

@@ -6,8 +6,7 @@ import com.ua.test_task.model.enums.QueryOperationType;
 import com.ua.test_task.model.UpdateOperation;
 import com.ua.test_task.service.Memory;
 import com.ua.test_task.service.WritterService;
-import com.ua.test_task.service.comparator.UpdateOperationComparatorMax;
-import com.ua.test_task.service.comparator.UpdateOperationComparatorMin;
+import com.ua.test_task.service.comparator.UpdateOperationComparator;
 
 import java.util.Collections;
 import java.util.List;
@@ -38,7 +37,7 @@ public class QueryOperationService {
             QueryOperationBest queryOperationBest = OperationInitializationService.createQueryOperationBest(line);
             if (queryOperationBest.getType() == QueryOperationType.BEST_BID) {
                 List<UpdateOperation> bids = memory.getBids();
-                UpdateOperation max = Collections.max(bids, new UpdateOperationComparatorMax());
+                UpdateOperation max = Collections.max(bids, new UpdateOperationComparator());
                 int price = max.getPrice();
                 int size = max.getSize();
                 String formatMassage = "%d,%d\n";
@@ -47,7 +46,7 @@ public class QueryOperationService {
             }
             if (queryOperationBest.getType() == QueryOperationType.BEST_ASK) {
                 List<UpdateOperation> asks = memory.getAsks();
-                UpdateOperation max = Collections.min(asks, new UpdateOperationComparatorMin());
+                UpdateOperation max = Collections.min(asks, new UpdateOperationComparator());
                 int price = max.getPrice();
                 int size = max.getSize();
                 String formatMassage = "%d,%d\n";

@@ -1,4 +1,0 @@
-u,9,5,bid
-o,sell,1
-o,sell,2
-q,best_bid
