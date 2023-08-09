@@ -1,0 +1,67 @@
+     Order Book Gherkin Scenarios
+
+#1
+Scenario:  Update bid's price and size
+    Given Timmy wants to update bid price and size
+    When Timmy updates price '10' and size '12'
+        And price is '10'
+        And size is '12'
+    Then size and price are changed
+        And price is '10'
+        And size is '12'
+
+
+#2
+Scenario:  Update ask's price and size
+    Given Timmy wants to update ask size and price
+    When Timmy update price '10' and size '12'
+        And price is '10'
+        And size is '12'
+    Then size and price are changed
+        And price is '10'
+        And size is '12'
+
+#3
+Scenario: Print best bid by price and size
+    Given Timmy wants to see the best bid for price and size
+        And list of bids ['u,10,12,bid'|'u,12,11,bid'|'u,12,9,bid']
+    When Timmy presses the button 'q,best_bid'
+        And he sees '10,12'
+    Then best bid is showed
+        And best bid is 'u,10,12,bid'
+
+#4
+Scenario: Print best ask by price and size
+    Given Timmy wants to see the best ask by price and size
+        And list of asks ['u,10,12,ask'|'u,12,11,ask'|'u,12,9,ask']
+    When Timmy presses the button 'q,best_ask'
+        And he sees '10,12'
+    Then best ask is showed
+        And best ask is 'u,10,12,ask'
+
+#5
+Scenario:  Print size at specified price (bid, ask or spread)
+    Given Timmy wants to see size of bid or ask by specified price
+        And list of asks and bids ['u,10,12,ask'|'u,12,11,bid'|'u,12,9,ask'|'u,9,7,ask']
+    When Timmy presses the button 'q,size,9'
+        And he sees '7'
+   Then size is showed
+        And best ask is '7'
+
+#6
+Scenario: Removes 'size' shares of asks, most cheap ones
+    Given Timmy wants to buy most cheap ask by specified size
+        And list of asks ['u,10,12,ask'|'u,12,9,ask']
+        And Timmy prefers size if '10'
+    When Timmy presses the button 'o,buy,10'
+    Then the most cheap ask is bought
+        And list of asks looks like ['u,10,11(-1),ask'|'u,12,0(-9),ask']
+
+#7
+Scenario: Removes 'size' shares of bids, most expensive ones
+    Given Timmy wants to sell most expensive bid by specified size
+        And list of bids ['u,10,12,bid'|'u,12,9,bid']
+        And Timmy prefers size if '10'
+    When Timmy presses the button 'o,sell,10'
+    Then the most expensive bid is sold
+        And list of bids looks like ['u,13,2(-10),bid'|'u,11,9,bid']
