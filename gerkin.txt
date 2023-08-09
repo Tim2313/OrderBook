@@ -42,7 +42,7 @@ Scenario: Print best ask by price and size
 #5
 Scenario:  Print size at specified price (bid, ask or spread)
     Given Timmy wants to see size of bid or ask by specified price
-        And list of asks and bids ['u,10,12,ask'|'u,12,11,bid'|'u,12,9,ask'|'u,9,7,ask']
+        And list of asks and bids ['u,10,12,ask'|'u,8,11,ask'|'u,12,9,ask'|'u,9,7,ask']
     When Timmy presses the button 'q,size,9'
         And he sees '7'
    Then size is showed
@@ -65,3 +65,6 @@ Scenario: Removes 'size' shares of bids, most expensive ones
     When Timmy presses the button 'o,sell,10'
     Then the most expensive bid is sold
         And list of bids looks like ['u,13,2(-10),bid'|'u,11,9,bid']
+
+#8
+Scenario: 
