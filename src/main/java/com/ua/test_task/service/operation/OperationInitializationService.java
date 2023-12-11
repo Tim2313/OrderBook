@@ -9,7 +9,6 @@ public final class OperationInitializationService {
     private static final String LINE_DELIMITER = ",";
 
     private OperationInitializationService() {
-
     }
 
     public static UpdateOperation createUpdateOperation(String line) {
@@ -27,7 +26,6 @@ public final class OperationInitializationService {
         QueryOperationType queryOperationType = QueryOperationType.getByTitle(type);
         return new QueryOperationBest(queryOperationType);
     }
-
 
     public static OrderOperation createOrderOperation(String line) {
         String[] splitString = line.split(LINE_DELIMITER);

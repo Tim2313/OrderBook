@@ -5,11 +5,15 @@ import com.ua.test_task.model.enums.OrderOperationType;
 import com.ua.test_task.model.UpdateOperation;
 import com.ua.test_task.service.Memory;
 import com.ua.test_task.service.comparator.UpdateOperationComparator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 import java.util.*;
 
 public class OrderOperationService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(OrderOperationService.class);
 
     private final Memory memory;
 
@@ -57,6 +61,7 @@ public class OrderOperationService {
                 }
             }
         }
+        LOGGER.info("'OrderOperation' executed.");
     }
 }
 
